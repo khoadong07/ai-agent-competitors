@@ -4,7 +4,7 @@ from app.core.config import settings
 from app.services.sb_api_service import APISentimentAggregationService
 
 app = FastAPI(
-    title="SOV Analysis API",
+    title="Competitors Analysis API",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",

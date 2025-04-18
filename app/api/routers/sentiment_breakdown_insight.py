@@ -4,7 +4,7 @@ from app.services.sb_insight_service import SentimentBreakdownInsightService
 from app.api.dependencies import get_auth_headers
 from app.utils import response_template
 
-router = APIRouter(prefix="/sentiment_breakdown", tags=["SB Insights"])
+router = APIRouter(prefix="/sentiment_breakdown", tags=["Sentiment Breakdown Insights"])
 
 @router.post("/generate_insight")
 async def generate_sov_insight(
