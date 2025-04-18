@@ -1,11 +1,11 @@
 import json
 from typing import Dict, List, Optional
-from app.services.api_service import APIService
+from app.services.sov_api_service import APISovService
 from app.core.exceptions import APIRequestException
 
-class InsightService:
+class SovInsightService:
     def __init__(self, x_token: str, x_refresh_token: str):
-        self.api_service = APIService(x_token, x_refresh_token)
+        self.api_service = APISovService(x_token, x_refresh_token)
 
     async def generate_insight(
         self,

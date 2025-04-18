@@ -6,10 +6,10 @@ from app.services.sov_insight_service import SovInsightService
 from app.api.dependencies import get_auth_headers
 from app.utils import response_template
 
-router = APIRouter(prefix="/sov", tags=["SOV Insights"])
+router = APIRouter(prefix="/band-health", tags=["Brand Health Insights"])
 
 @router.post("/generate_insight")
-async def generate_sov_insight(
+async def generate_brand_attribute_by_sentiment_insight(
     request: InsightRequest,
     auth_headers: tuple = Depends(get_auth_headers),
 ):
@@ -25,5 +25,5 @@ async def generate_sov_insight(
     print(type(data_period1))
     print(type(data_period2))
     if report is None:
-        return response_template.fail_response("Failed to generate SOV report")
+        return response_template.fail_response("Failed to generate Brand Health report")
     return response_template.success_response(data={"report": report, "data_period_1": data_period1, "data_period_2": data_period2})
