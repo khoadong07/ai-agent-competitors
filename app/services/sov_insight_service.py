@@ -36,7 +36,6 @@ class SovInsightService:
             response = self.api_service.openai_client.chat.completions.create(
                 model="meta-llama/llama-4-scout:free",
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=1500,
                 temperature=0.7,
             )
             return response.choices[0].message.content.strip(), buzz_data_1, buzz_data_2

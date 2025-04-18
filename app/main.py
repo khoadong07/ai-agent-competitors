@@ -1,9 +1,17 @@
 from fastapi import FastAPI
+from fastapi_cache.backends.inmemory import InMemoryBackend
 from starlette.middleware.cors import CORSMiddleware
 
 from app.api.routers import sov_insight, sentiment_breakdown_insight, brand_health, channel_breakdown, brand_attribute_by_sentiment, mention_trendlines
+from app.core.cache import init_cache
 from app.core.config import settings
 from app.services.sb_api_service import APISentimentAggregationService
+from fastapi_cache import FastAPICache
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 app = FastAPI(
     title="Competitors Analysis API",
@@ -11,6 +19,10 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
 )
+
+@app.on_event("startup")
+async def startup():
+    FastAPICache.init(InMemoryBackend())
 
 app.add_middleware(
     CORSMiddleware,
